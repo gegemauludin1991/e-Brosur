@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f5f5f5; display: flex; justify-content: center; }
+        
+        .app-container { 
+            width: 100%; max-width: 414px; background-color: #ffffff; 
+            min-height: 100vh; display: flex; flex-direction: column; 
+            position: relative; overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        .login-header {
+            background-color: #CDE39B;
+            height: 250px;
+            border-radius: 0 0 40px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Tombol Balik ke Toko */
+        .btn-back {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(255,255,255,0.5);
+            border: none; padding: 8px 12px; border-radius: 12px;
+            display: flex; align-items: center; gap: 5px;
+            font-size: 11px; font-weight: 700; color: #1a2e0f;
+            text-decoration: none; cursor: pointer; transition: 0.2s;
+        }
+        .btn-back:active { transform: scale(0.95); }
+        .btn-back svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+
+        .logo-circle {
+            width: 80px; height: 80px; background: #1a2e0f;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px;
+        }
+        .logo-circle svg { width: 40px; height: 40px; stroke: #CDE39B; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round;}
+        
+        .login-header h1 { font-size: 24px; font-weight: 800; color: #1a2e0f; }
+        .login-header p { font-size: 12px; color: #1a2e0f; opacity: 0.8; }
+
+        /* --- FORM LOGIN --- */
+        .login-form-container {
+            padding: 40px 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 13px; color: #1a2e0f; }
+        .form-group input { 
+            width: 100%; padding: 15px; border: 2px solid #EAF4D3; 
+            border-radius: 15px; font-size: 14px; outline: none; transition: 0.3s;
+            background-color: #fafafa; font-weight: 500;
+        }
+        .form-group input:focus { border-color: #CDE39B; background-color: #fff; }
+
+        .btn-login {
+            width: 100%; background-color: #1a2e0f; color: #CDE39B; border: none; 
+            padding: 16px; border-radius: 15px; font-weight: 700; cursor: pointer; 
+            font-size: 16px; transition: transform 0.2s; margin-top: 10px;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-login:active { transform: scale(0.98); }
+
+        /* --- TOAST ERROR --- */
+        .toast-error {
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            background-color: #FF4747; color: #fff; padding: 12px 24px;
+            border-radius: 30px; font-size: 13px; font-weight: 700;
+            box-shadow: 0 5px 15px rgba(255, 71, 71, 0.3);
+            transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999; display: flex; align-items: center; gap: 8px;
+        }
+        .toast-error.show { bottom: 30px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="login-header">
+            <a href="index.html" class="btn-back">
+                <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Kembali
+            </a>
+            
+            <div class="logo-circle">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <h1>Admin Akses</h1>
+            <p>Silakan masuk ke ruang akses.</p>
+        </header>
+
+        <div class="login-form-container">
+            <div class="form-group">
+                <label>Email Admin</label>
+                <input type="email" id="email" placeholder="Contoh: admin@pic.com" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan password Anda">
+            </div>
+            
+            <button class="btn-login" onclick="prosesLogin()">
+                Login Sekarang
+                <svg viewBox="0 0 24 24" style="width:18px; height:18px; stroke:currentColor; stroke-width:2.5; fill:none;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            
+            <p style="font-size: 11px; color: #888; text-align: center; margin-top: 30px;">Gunakan email dan password yang terdaftar.</p>
+        </div>
+
+        <div id="toast-error" class="toast-error">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: white; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            <span id="pesan-error">Email atau Password salah!</span>
+        </div>
+
+    </div>
+
+    <script>
+        // LOGIC DUMMY LOGIN (Akan diganti dengan Supabase Auth nanti)
+        function prosesLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = document.querySelector('.btn-login');
+
+            // Cek kalau input kosong
+            if(email === "" || password === "") {
+                tampilError("Email dan Password harus diisi!");
+                return;
+            }
+
+            // Animasi tombol loading
+            btn.innerHTML = "Memeriksa... ⏳";
+            btn.style.opacity = "0.7";
+
+            // Simulasi loading 1 detik
+            setTimeout(() => {
+                // Kredensial Dummy: admin@cireng.com / admin123
+                if(email === "admin@windy" && password === "admin123") {
+                    // Kalau berhasil, redirect ke admin.html
+                    window.location.href = "admin.html";
+                } else {
+                    // Kalau gagal
+                    btn.innerHTML = `Login Sekarang <svg viewBox="0 0 24 24" style="width:18px; height:18px; stroke:currentColor; stroke-width:2.5; fill:none;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
+                    btn.style.opacity = "1";
+                    tampilError("Email atau Password salah bro!");
+                }
+            }, 1000);
+        }
+
+        // Fungsi muculin pop-up merah
+        function tampilError(pesan) {
+            const toast = document.getElementById('toast-error');
+            document.getElementById('pesan-error').innerText = pesan;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
