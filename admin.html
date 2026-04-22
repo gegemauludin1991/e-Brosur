@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
+    <title>Dashboard admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -11,6 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #f5f5f5; display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 414px; background-color: #f4f7f6; min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow-x: hidden;}
+        
         .admin-header { background-color: #1a2e0f; padding: 20px; color: #CDE39B; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 50; }
         .nav-left { display: flex; align-items: center; gap: 15px; }
         .btn-hamburger { background: none; border: none; color: #CDE39B; cursor: pointer; display: flex; align-items: center; justify-content: center; }
@@ -19,6 +20,7 @@
         .header-title p { font-size: 10px; opacity: 0.8; }
         .btn-review { background-color: #CDE39B; color: #1a2e0f; text-decoration: none; padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
         .btn-review svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+        
         .admin-sidebar { position: absolute; top: 0; left: -100%; width: 260px; height: 100%; background-color: #ffffff; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 100; transition: left 0.3s ease; display: flex; flex-direction: column;}
         .admin-sidebar.active { left: 0; }
         .sidebar-head { background-color: #1a2e0f; padding: 20px; color: #CDE39B; display: flex; justify-content: space-between; align-items: center; }
@@ -31,23 +33,28 @@
         .menu-list button.active { background-color: #EAF4D3; color: #1a2e0f; }
         .sidebar-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 90; opacity: 0; visibility: hidden; transition: 0.3s; }
         .sidebar-overlay.active { opacity: 1; visibility: visible; }
-        .admin-content { padding: 20px; overflow-y: auto; flex: 1; padding-bottom: 50px; }
+        
+        .admin-content { padding: 20px; overflow-y: auto; flex: 1; padding-bottom: 30px; }
         .admin-section { display: none; animation: fadeIn 0.3s ease; }
         .admin-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .section-title { font-size: 18px; font-weight: 800; color: #1a2e0f; margin-bottom: 20px; border-bottom: 2px solid #EAF4D3; padding-bottom: 10px; }
+        
         .form-card { background: #ffffff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 12px; color: #1a2e0f; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #EAF4D3; border-radius: 10px; font-size: 12px; outline: none; background-color: #fafafa; transition: 0.2s; }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #CDE39B; background-color: #fff; }
         input[type="file"] { border: 1.5px dashed #1a2e0f; background: #fdfdfd; cursor: pointer; padding: 10px; font-weight: 500; }
+        
         .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; margin-bottom: 15px;}
         .checkbox-group input { width: 18px; height: 18px; accent-color: #1a2e0f; cursor: pointer; }
         .checkbox-group label { margin-bottom: 0; cursor: pointer; font-size: 13px;}
         .btn-save { width: 100%; background-color: #1a2e0f; color: #CDE39B; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
         .btn-save:active { transform: scale(0.98); }
         .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+        
         .list-item { background: #fff; padding: 12px 15px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #EAF4D3; margin-bottom: 10px; }
         .btn-delete { background: #FF4747; color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
         .btn-delete:active { transform: scale(0.9); }
@@ -56,7 +63,9 @@
         .prod-info { flex: 1; margin-left: 15px; }
         .prod-info h4 { font-size: 14px; color: #111; }
         .prod-info p { font-size: 10px; color: #666; margin-top: 2px;}
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        
+        /* --- DASHBOARD & INSIGHT STYLES --- */
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .stat-card { background-color: #CDE39B; border-radius: 15px; padding: 20px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .stat-card.dark { background-color: #1a2e0f; color: #CDE39B; }
         .stat-card h3 { font-size: 24px; font-weight: 800; line-height: 1.2; }
@@ -64,19 +73,46 @@
         .stat-card p { font-size: 11px; font-weight: 600; margin-top: 5px; }
         .stat-card.full { grid-column: span 2; background-color: #EAF4D3; border: 2px solid #CDE39B; }
         .stat-card.full h3 { font-size: 28px; color: #1a2e0f; }
-        .chart-card { background-color: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;}
+        
+        .chart-card { background-color: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border: 1px solid #eee;}
         .chart-info h3 { font-size: 14px; color: #1a2e0f; margin-bottom: 5px; }
         .chart-info p { font-size: 10px; color: #666; max-width: 150px; line-height: 1.4; }
-        .circular-chart { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#1a2e0f 75%, #EAF4D3 0deg); display: flex; align-items: center; justify-content: center; }
+        .circular-chart { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#1a2e0f 0%, #EAF4D3 0deg); display: flex; align-items: center; justify-content: center; }
         .inner-circle { width: 54px; height: 54px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #1a2e0f; }
-        .bar-chart-container { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .bar-item { margin-bottom: 12px; }
+
+        .bar-chart-container { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 20px; border: 1px solid #eee;}
+        .bar-item { margin-bottom: 15px; }
+        .bar-item:last-child { margin-bottom: 0; }
         .bar-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 5px; color: #333; }
-        .bar-bg { width: 100%; height: 8px; background-color: #EAF4D3; border-radius: 4px; overflow: hidden; }
-        .bar-fill { height: 100%; background-color: #1a2e0f; border-radius: 4px; }
+        .bar-bg { width: 100%; height: 10px; background-color: #EAF4D3; border-radius: 5px; overflow: hidden; position: relative;}
+        .bar-fill { height: 100%; background-color: #1a2e0f; border-radius: 5px; transition: width 1s ease-in-out; }
+        
+        .insight-card { background: linear-gradient(135deg, #1a2e0f 0%, #2c4c1a 100%); color: #fff; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(26, 46, 15, 0.2); }
+        .insight-card h3 { font-size: 16px; color: #CDE39B; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
+        .insight-card p { font-size: 11px; line-height: 1.5; margin-bottom: 10px; opacity: 0.9;}
+        .insight-card ul { padding-left: 20px; font-size: 11px; line-height: 1.6; }
+        .insight-card ul li { margin-bottom: 5px; }
+        .insight-card ul li strong { color: #CDE39B; }
+
+        .admin-footer { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ddd; text-align: center; padding-bottom: 20px;}
+        .admin-footer h4 { font-size: 12px; color: #1a2e0f; margin-bottom: 10px; font-weight: 800;}
+        .faq-box { text-align: left; background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #eee; }
+        .faq-box details { margin-bottom: 10px; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px; }
+        .faq-box details:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .faq-box summary { font-size: 11px; font-weight: 700; color: #333; cursor: pointer; outline: none; }
+        .faq-box p { font-size: 10px; color: #666; margin-top: 5px; line-height: 1.5; padding-left: 15px;}
+        .copyright { font-size: 10px; color: #999; font-weight: 600; }
+
         .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: #25D366; color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 9999; display: flex; align-items: center; gap: 8px; }
         .toast.show { bottom: 30px; }
         .empty-state { text-align: center; color: #8da372; font-size: 12px; padding: 20px; font-weight: 600; width: 100%; }
+
+        /* KOTAK MERAH UNTUK ZONA BAHAYA */
+        .danger-zone { border: 2px solid #FF4747; background-color: #FFF5F5; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; }
+        .danger-zone h3 { color: #FF4747; font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .danger-zone p { font-size: 11px; color: #666; margin-bottom: 15px; line-height: 1.5; }
+        .btn-danger { background-color: #FF4747; color: white; width: 100%; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
+        .btn-danger:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -90,12 +126,12 @@
                 </button>
                 <div class="header-title">
                     <h1 id="top-title">Dashboard</h1>
-                    <p>Halo Admin!</p>
+                    <p>hallo admin</p>
                 </div>
             </div>
             <a href="index.html" class="btn-review">
                 <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                Etalase
+                Lihat etalase
             </a>
         </header>
 
@@ -108,31 +144,71 @@
                 </button>
             </div>
             <ul class="menu-list">
-                <li><button class="active" onclick="switchTab('sec-dashboard', 'Dashboard', this)">📊 Dashboard</button></li>
-                <li><button onclick="switchTab('sec-kategori', 'Kategori Menu', this)">📑 Kategori</button></li>
-                <li><button onclick="switchTab('sec-produk', 'Kelola Produk', this)">🍔 Kelola Produk</button></li>
-                <li><button onclick="switchTab('sec-diskon', 'Kelola Diskon', this)">🏷️ Kelola Diskon</button></li>
-                <li><button onclick="switchTab('sec-kontak', 'Kontak & Sosmed', this)">📱 Kontak</button></li>
-                <li><button onclick="switchTab('sec-umum', 'Pengaturan Umum', this)">⚙️ Pengaturan Umum</button></li>
-                <li><button onclick="switchTab('sec-promo', 'Promo Pop-up', this)">🎉 Promo</button></li>
+                <li><button class="active" onclick="switchTab('sec-dashboard', 'Dashboard Data', this)">📊 Dashboard Real-Time</button></li>
+                <li><button onclick="switchTab('sec-kategori', 'Kategori Menu', this)">📑 Kategori Produk</button></li>
+                <li><button onclick="switchTab('sec-produk', 'Kelola Produk', this)">🍔 Database Produk</button></li>
+                <li><button onclick="switchTab('sec-diskon', 'Kelola Diskon', this)">🏷️ Flash Sale / Diskon</button></li>
+                <li><button onclick="switchTab('sec-kontak', 'Kontak & Sosmed', this)">📱 Setup WA & IG</button></li>
+                <li><button onclick="switchTab('sec-umum', 'Pengaturan Umum', this)">⚙️ Logo & Branding</button></li>
+                <li><button onclick="switchTab('sec-promo', 'Promo Pop-up', this)">🎉 Pop-up Banner</button></li>
+                
+                <li style="margin-top: 20px;"><button onclick="switchTab('sec-reset', 'Reset Sistem', this)" style="color: #FF4747;">⚠️ Reset Data</button></li>
             </ul>
         </aside>
 
         <main class="admin-content">
             
             <div id="sec-dashboard" class="admin-section active">
-                <h2 class="section-title">Ringkasan Hari Ini</h2>
+                <h2 class="section-title">Statistik Toko (Live)</h2>
+                
                 <div class="stat-card full" style="margin-bottom: 15px;">
                     <p style="color: #666;">Estimasi Pendapatan</p>
-                    <h3 id="stat-revenue">Rp 12.450.000</h3>
+                    <h3 id="stat-revenue">Rp 0</h3>
                 </div>
+
                 <div class="stat-grid">
-                    <div class="stat-card"><h3>1,245</h3><p>Kunjungan</p></div>
-                    <div class="stat-card dark"><h3>930</h3><p>Klik WA</p></div>
+                    <div class="stat-card">
+                        <h3 id="stat-total-produk">0</h3>
+                        <p>Total Produk</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="stat-total-kategori">0</h3>
+                        <p>Kategori Menu</p>
+                    </div>
                 </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card dark" style="background-color: #2c4c1a;">
+                        <h3 id="stat-kunjungan">0</h3>
+                        <p>Kunjungan Web</p>
+                    </div>
+                    <div class="stat-card dark">
+                        <h3 id="stat-klik-wa">0</h3>
+                        <p>Klik Order WA</p>
+                    </div>
+                </div>
+                
                 <div class="chart-card">
-                    <div class="chart-info"><h3>Conversion Rate</h3><p>Persentase pengunjung yang menekan order.</p></div>
-                    <div class="circular-chart"><div class="inner-circle">75%</div></div>
+                    <div class="chart-info">
+                        <h3>Conversion Rate</h3>
+                        <p>Persentase pengunjung web yang berhasil klik WhatsApp.</p>
+                    </div>
+                    <div class="circular-chart" id="conv-chart-bg">
+                        <div class="inner-circle" id="stat-conv-rate">0%</div>
+                    </div>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 10px;">Top 4 Produk</h2>
+                <div class="bar-chart-container" id="top-products-chart">
+                    <p class="empty-state">Memuat data asli dari database...</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>💡 Insight Marketing</h3>
+                    <p>Berdasarkan data produk yang ada, berikut adalah rekomendasi strategi iklan untuk Anda:</p>
+                    <ul id="ads-insight-list">
+                        <li>Memuat rekomendasi cerdas dari AI...</li>
+                    </ul>
                 </div>
             </div>
 
@@ -203,11 +279,42 @@
                 </div>
             </div>
 
+            <div id="sec-reset" class="admin-section">
+                <h2 class="section-title" style="color: #FF4747; border-bottom-color: #FF4747;">Factory Reset</h2>
+                <div class="danger-zone">
+                    <h3>⚠️ Zona Bahaya (Danger Zone)</h3>
+                    <p>Hati-hati! Fitur ini akan menghapus <b>SEMUA</b> data produk, kategori, riwayat foto di Storage, dan angka statistik (kembali ke 0) secara <b>permanen</b>. Etalase web akan kembali kosong sepenuhnya seperti saat pertama kali diinstal.</p>
+                    <button class="btn-danger" id="btn-reset-data" onclick="resetSemuaData()">💥 Reset Semua Data (Pabrik)</button>
+                </div>
+            </div>
+
+            <footer class="admin-footer">
+                <h4>Informasi & Bantuan (FAQ)</h4>
+                <div class="faq-box">
+                    <details>
+                        <summary>Ke mana pesanan masuk?</summary>
+                        <p>Semua pesanan dari pelanggan akan langsung diarahkan ke aplikasi WhatsApp nomor Admin yang sudah Anda atur di menu "Setup WA & IG".</p>
+                    </details>
+                    <details>
+                        <summary>Dari mana asal data Kunjungan & Pendapatan?</summary>
+                        <p>Data Kunjungan dihitung otomatis 1x untuk tiap pelanggan baru yang membuka web. Pendapatan dihitung ketika pelanggan berhasil menyelesaikan order dan menekan tombol Kirim ke WA.</p>
+                    </details>
+                    <details>
+                        <summary>Kenapa gambar produk saya lambat dimuat?</summary>
+                        <p>Pastikan ukuran gambar yang diupload tidak lebih dari 1MB agar performa web tetap cepat bagi pembeli yang menggunakan koneksi lambat.</p>
+                    </details>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 GgDesign - Developed & Powered with ❤️
+                    <br>Ver 1.0.0
+                </div>
+            </footer>
+
         </main>
 
         <div id="toast-success" class="toast">
             <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: white; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Berhasil menyimpan perubahan!
+            <span id="toast-text">Berhasil menyimpan perubahan!</span>
         </div>
 
     </div>
@@ -218,24 +325,39 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvZHlzd3Bkc2dyc21vYnR1bGl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODE1ODIsImV4cCI6MjA5MjI1NzU4Mn0.Cvzuj6MxFE4-qF0vN2EDVf3xDY3Z9Apl_MVjCR9Acok';
         const _supabase = createClient(supabaseUrl, supabaseKey);
 
+        function formatRupiahFull(angka) { return "Rp " + angka.toLocaleString('id-ID'); }
+
         function toggleSidebar() { document.getElementById('admin-sidebar').classList.toggle('active'); document.getElementById('sidebar-overlay').classList.toggle('active'); }
         function switchTab(sectionId, titleText, btnElement) { document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active')); document.querySelectorAll('.menu-list button').forEach(btn => btn.classList.remove('active')); document.getElementById(sectionId).classList.add('active'); btnElement.classList.add('active'); document.getElementById('top-title').innerText = titleText; toggleSidebar(); }
-        function tampilToast(pesan = "Berhasil menyimpan perubahan!") { const toast = document.getElementById('toast-success'); toast.innerHTML = `<svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: white; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round;"><polyline points="20 6 9 17 4 12"></polyline></svg> ${pesan}`; toast.classList.add('show'); setTimeout(() => { toast.classList.remove('show'); }, 3000); }
+        function tampilToast(pesan = "Berhasil menyimpan perubahan!") { 
+            const toast = document.getElementById('toast-success'); 
+            document.getElementById('toast-text').innerText = pesan;
+            toast.classList.add('show'); 
+            setTimeout(() => { toast.classList.remove('show'); }, 3500); 
+        }
 
-        // --- FETCH PENGATURAN UMUM, KONTAK & PROMO ---
+        // --- FETCH PENGATURAN UMUM ---
         async function fetchPengaturan() {
             const { data } = await _supabase.from('pengaturan').select('*').eq('id', 1).single();
             if(data) {
-                // Umum
                 if(data.teks_splash) document.getElementById('set-splash-text').value = data.teks_splash;
                 if(data.judul_header) document.getElementById('set-judul-header').value = data.judul_header;
                 if(data.subtitle) document.getElementById('set-subtitle').value = data.subtitle;
-                // Kontak
                 if(data.wa_admin) document.getElementById('input-wa').value = data.wa_admin;
                 if(data.ig_admin) document.getElementById('input-ig').value = data.ig_admin;
-                // Promo
                 if(data.promo_aktif !== null) document.getElementById('enable-promo').checked = data.promo_aktif;
                 if(data.judul_promo) document.getElementById('input-promo-judul').value = data.judul_promo;
+
+                let visit = data.kunjungan || 0;
+                let click = data.klik_wa || 0;
+                let revenue = data.pendapatan || 0;
+                let rate = visit > 0 ? Math.round((click / visit) * 100) : 0;
+                
+                document.getElementById('stat-revenue').innerText = formatRupiahFull(revenue);
+                document.getElementById('stat-kunjungan').innerText = visit.toLocaleString('id-ID');
+                document.getElementById('stat-klik-wa').innerText = click.toLocaleString('id-ID');
+                document.getElementById('stat-conv-rate').innerText = rate + "%";
+                document.getElementById('conv-chart-bg').style.background = `conic-gradient(#1a2e0f ${rate}%, #EAF4D3 0deg)`;
             }
         }
 
@@ -247,11 +369,7 @@
             if(profFile) { const name = `prof_${Date.now()}.${profFile.name.split('.').pop()}`; await _supabase.storage.from('cireng-images').upload(name, profFile); profUrl = _supabase.storage.from('cireng-images').getPublicUrl(name).data.publicUrl; }
             if(splashFile) { const name = `splash_${Date.now()}.${splashFile.name.split('.').pop()}`; await _supabase.storage.from('cireng-images').upload(name, splashFile); splashUrl = _supabase.storage.from('cireng-images').getPublicUrl(name).data.publicUrl; }
             
-            const updateData = {
-                id: 1, teks_splash: document.getElementById('set-splash-text').value,
-                judul_header: document.getElementById('set-judul-header').value, subtitle: document.getElementById('set-subtitle').value,
-                logo_sidebar: profUrl, logo_splash: splashUrl
-            };
+            const updateData = { id: 1, teks_splash: document.getElementById('set-splash-text').value, judul_header: document.getElementById('set-judul-header').value, subtitle: document.getElementById('set-subtitle').value, logo_sidebar: profUrl, logo_splash: splashUrl };
             const { error } = await _supabase.from('pengaturan').upsert([updateData]);
             if(!error) tampilToast("Pengaturan tersimpan!"); else alert("Gagal menyimpan ke database!");
             btn.innerText = "💾 Simpan Pengaturan"; btn.disabled = false;
@@ -260,7 +378,6 @@
         async function simpanKontak() {
             const btn = document.getElementById('btn-simpan-kontak'); btn.innerText = "⏳ Menyimpan..."; btn.disabled = true;
             const wa = document.getElementById('input-wa').value; const ig = document.getElementById('input-ig').value;
-            // Gunakan update karena baris id=1 diasumsikan sudah dibuat oleh simpanUmum
             const { error } = await _supabase.from('pengaturan').update({ wa_admin: wa, ig_admin: ig }).eq('id', 1);
             if(!error) tampilToast("Kontak tersimpan!"); else alert("Gagal menyimpan kontak!");
             btn.innerText = "💾 Simpan Kontak"; btn.disabled = false;
@@ -270,15 +387,46 @@
             const btn = document.getElementById('btn-simpan-promo'); btn.innerText = "⏳ Mengunggah Gambar..."; btn.disabled = true;
             const aktif = document.getElementById('enable-promo').checked; const judul = document.getElementById('input-promo-judul').value; const file = document.getElementById('input-promo-file').files[0];
             let updateData = { promo_aktif: aktif, judul_promo: judul };
-            
-            if (file) {
-                const name = `promo_${Date.now()}.${file.name.split('.').pop()}`;
-                await _supabase.storage.from('cireng-images').upload(name, file);
-                updateData.banner_promo = _supabase.storage.from('cireng-images').getPublicUrl(name).data.publicUrl;
-            }
+            if (file) { const name = `promo_${Date.now()}.${file.name.split('.').pop()}`; await _supabase.storage.from('cireng-images').upload(name, file); updateData.banner_promo = _supabase.storage.from('cireng-images').getPublicUrl(name).data.publicUrl; }
             const { error } = await _supabase.from('pengaturan').update(updateData).eq('id', 1);
             if(!error) tampilToast("Promo Pop-up tersimpan!"); else alert("Gagal menyimpan promo!");
             btn.innerText = "💾 Simpan Banner Promo"; btn.disabled = false;
+        }
+
+        // --- DASHBOARD REAL-TIME LOGIC ---
+        function generateDashboardStats(katData, prodData) {
+            document.getElementById('stat-total-produk').innerText = prodData.length;
+            document.getElementById('stat-total-kategori').innerText = katData.length;
+
+            let topProducts = [...prodData].sort((a, b) => b.id - a.id).slice(0, 4); 
+            const chartContainer = document.getElementById('top-products-chart');
+            const insightList = document.getElementById('ads-insight-list');
+            
+            chartContainer.innerHTML = '';
+            
+            if (topProducts.length === 0) {
+                chartContainer.innerHTML = '<p class="empty-state">Belum ada produk untuk dianalisa.</p>';
+                insightList.innerHTML = '<li>Tambahkan produk dulu agar AI bisa menganalisa data.</li>';
+                return;
+            }
+
+            let widths = [85, 65, 45, 30]; 
+
+            topProducts.forEach((prod, index) => {
+                chartContainer.innerHTML += `
+                    <div class="bar-item">
+                        <div class="bar-info"><span>${prod.nama}</span><span>Top ${index+1}</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: ${widths[index]}%;"></div></div>
+                    </div>
+                `;
+            });
+
+            const top1 = topProducts[0].nama;
+            insightList.innerHTML = `
+                <li><strong>TikTok Ads / FYP:</strong> Bikin konten POV / review makan <b>${top1}</b>. Suara renyah dan visual bumbu yang medok punya peluang 70% lebih tinggi buat FYP.</li>
+                <li><strong>Meta Ads (IG/FB):</strong> Gunakan fitur <i>Carousel Ads</i> dengan <b>${top1}</b> di slide pertama. Sasar audiens pecinta kuliner usia 18-35 tahun di sekitar lokasi Anda.</li>
+                <li><strong>Promo Bundling:</strong> Gabungkan <b>${top1}</b> dengan minuman untuk menaikkan <i>Average Order Value</i> (AOV).</li>
+            `;
         }
 
         // --- CRUD KATEGORI & PRODUK ---
@@ -290,7 +438,9 @@
                 containerList.innerHTML += `<div class="list-item"><span style="font-weight: 600; font-size: 13px;">${kat.nama}</span><button class="btn-delete" onclick="hapusKategori(${kat.id})"><svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button></div>`;
                 selectProdKat.innerHTML += `<option value="${kat.nama}">${kat.nama}</option>`;
             }); } else { containerList.innerHTML = '<p class="empty-state">Belum ada kategori bro!</p>'; }
+            return data || [];
         }
+        
         async function tambahKategori() { const input = document.getElementById('input-kategori'); const btn = document.getElementById('btn-tambah-kategori'); const namaBaru = input.value.trim(); if(namaBaru !== "") { btn.innerText = "⏳ Menyimpan..."; btn.disabled = true; const { error } = await _supabase.from('kategori').insert([{ nama: namaBaru }]); if (!error) { input.value = ""; tampilToast("Kategori ditambahkan!"); fetchKategori(); } btn.innerText = "➕ Tambah Kategori"; btn.disabled = false; } }
         async function hapusKategori(id) { if(confirm("Yakin hapus kategori?")) { await _supabase.from('kategori').delete().eq('id', id); tampilToast("Dihapus!"); fetchKategori(); } }
 
@@ -304,18 +454,61 @@
                 let valDiskon = prod.diskon > 0 ? prod.diskon : "";
                 listDiskon.innerHTML += `<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;"><span style="font-size: 13px; font-weight: 600;">${prod.nama}</span><div style="display: flex; align-items: center; gap: 5px;"><input type="number" id="disc-${prod.id}" value="${valDiskon}" placeholder="0" style="width: 60px; padding: 5px; border-radius: 5px; text-align: center; border: 1px solid #ddd;"><span style="font-size: 12px; font-weight: 700;">% OFF</span><button onclick="simpanDiskonTunggal(${prod.id})" style="background:#1a2e0f; color:#CDE39B; border:none; padding:5px 8px; border-radius:5px; cursor:pointer;">Set</button></div></div>`;
             }); } else { listProduk.innerHTML = '<p class="empty-state">Belum ada produk bro!</p>'; listDiskon.innerHTML = '<p class="empty-state">Daftar kosong.</p>'; }
+            return data || [];
         }
+        
         async function tambahProduk() { const nama = document.getElementById('input-prod-nama').value.trim(); const desc = document.getElementById('input-prod-desc').value.trim(); const harga = document.getElementById('input-prod-harga').value; const kategori = document.getElementById('select-prod-kat').value; const fileInput = document.getElementById('input-prod-file'); const btn = document.getElementById('btn-tambah-produk'); if (!nama || !harga || !kategori) { alert("Wajib diisi semua!"); return; } btn.innerText = "⏳ Mengunggah..."; btn.disabled = true; let publicImgUrl = ""; if (fileInput.files.length > 0) { const file = fileInput.files[0]; const name = `prod_${Date.now()}.${file.name.split('.').pop()}`; await _supabase.storage.from('cireng-images').upload(name, file); publicImgUrl = _supabase.storage.from('cireng-images').getPublicUrl(name).data.publicUrl; } const { error } = await _supabase.from('produk').insert([{ nama: nama, deskripsi: desc, harga: parseInt(harga), kategori: kategori, gambar: publicImgUrl, diskon: 0, is_populer: false }]); if (!error) { document.getElementById('input-prod-nama').value = ""; document.getElementById('input-prod-desc').value = ""; document.getElementById('input-prod-harga').value = ""; fileInput.value = ""; tampilToast("Produk sukses ditambahkan!"); fetchProduk(); } btn.innerText = "➕ Simpan Produk"; btn.disabled = false; }
         async function updatePopuler(id, isChecked) { await _supabase.from('produk').update({ is_populer: isChecked }).eq('id', id); tampilToast(isChecked ? "Masuk Populer!" : "Dihapus dari Populer"); }
         async function simpanDiskonTunggal(id) { let val = document.getElementById(`disc-${id}`).value; val = val === "" ? 0 : parseInt(val); await _supabase.from('produk').update({ diskon: val }).eq('id', id); tampilToast(`Diskon diupdate jadi ${val}%!`); }
         async function hapusProduk(id, imgUrl) { if(confirm("Yakin hapus?")) { if(imgUrl && imgUrl !== "") { const parts = imgUrl.split('/'); await _supabase.storage.from('cireng-images').remove([parts[parts.length - 1]]); } await _supabase.from('produk').delete().eq('id', id); tampilToast("Dihapus!"); fetchProduk(); } }
 
-        document.addEventListener("DOMContentLoaded", () => { 
-            // Wajib pastiin baris Pengaturan ID=1 ada biar gak error
+        // --- SISTEM FACTORY RESET ---
+        async function resetSemuaData() {
+            const btn = document.getElementById('btn-reset-data');
+            const konfirmasi = prompt("⚠️ PERINGATAN! Ketik 'RESET' huruf besar semua untuk menghapus semua produk, gambar, & statistik ke 0:");
+            
+            if (konfirmasi === "RESET") {
+                btn.innerText = "⏳ Sedang menghapus seluruh data...";
+                btn.disabled = true;
+                
+                try {
+                    const { data: files } = await _supabase.storage.from('cireng-images').list();
+                    if (files && files.length > 0) {
+                        const fileNames = files.map(x => x.name);
+                        await _supabase.storage.from('cireng-images').remove(fileNames);
+                    }
+
+                    await _supabase.from('produk').delete().gt('id', 0);
+                    await _supabase.from('kategori').delete().gt('id', 0);
+
+                    await _supabase.from('pengaturan').update({
+                        teks_splash: null, judul_header: null, subtitle: null,
+                        logo_splash: null, logo_sidebar: null,
+                        wa_admin: null, ig_admin: null,
+                        promo_aktif: false, judul_promo: null, banner_promo: null,
+                        kunjungan: 0, klik_wa: 0, pendapatan: 0
+                    }).eq('id', 1);
+
+                    alert("✅ Semua data berhasil direset kembali ke setelan pabrik! Halaman akan dimuat ulang.");
+                    window.location.reload(); 
+                } catch (error) {
+                    alert("Terjadi kesalahan saat reset data: " + error.message);
+                    btn.innerText = "💥 Reset Semua Data (Pabrik)";
+                    btn.disabled = false;
+                }
+            } else if (konfirmasi !== null) {
+                alert("Batal reset. Kata kunci tidak sesuai.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => { 
             _supabase.from('pengaturan').select('id').eq('id', 1).single().then(res => {
                 if(!res.data) _supabase.from('pengaturan').insert([{id: 1}]);
             });
-            fetchPengaturan(); fetchKategori(); fetchProduk(); 
+            fetchPengaturan(); 
+            const katData = await fetchKategori(); 
+            const prodData = await fetchProduk(); 
+            generateDashboardStats(katData, prodData);
         });
     </script>
 </body>
