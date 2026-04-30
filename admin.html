@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard admin</title>
+    <title>Dashboard Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -12,25 +12,25 @@
         body { background-color: #f5f5f5; display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 414px; background-color: #f4f7f6; min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow-x: hidden;}
         
-        .admin-header { background-color: #1a2e0f; padding: 20px; color: #CDE39B; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 50; }
+        .admin-header { background-color: #1A0A0A; padding: 20px; color: #FFF; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 50; }
         .nav-left { display: flex; align-items: center; gap: 15px; }
-        .btn-hamburger { background: none; border: none; color: #CDE39B; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .btn-hamburger { background: none; border: none; color: #FFF; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .btn-hamburger svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
         .header-title h1 { font-size: 18px; font-weight: 800; color: #fff; }
         .header-title p { font-size: 10px; opacity: 0.8; }
-        .btn-review { background-color: #CDE39B; color: #1a2e0f; text-decoration: none; padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+        .btn-review { background-color: #D32F2F; color: #FFF; text-decoration: none; padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
         .btn-review svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.5; fill: none; }
         
         .admin-sidebar { position: absolute; top: 0; left: -100%; width: 260px; height: 100%; background-color: #ffffff; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 100; transition: left 0.3s ease; display: flex; flex-direction: column;}
         .admin-sidebar.active { left: 0; }
-        .sidebar-head { background-color: #1a2e0f; padding: 20px; color: #CDE39B; display: flex; justify-content: space-between; align-items: center; }
+        .sidebar-head { background-color: #1A0A0A; padding: 20px; color: #FFF; display: flex; justify-content: space-between; align-items: center; }
         .sidebar-head h2 { font-size: 18px; color: #fff; }
-        .btn-close-sidebar { background: none; border: none; color: #CDE39B; cursor: pointer; }
+        .btn-close-sidebar { background: none; border: none; color: #FFF; cursor: pointer; }
         .btn-close-sidebar svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2.5; }
         .menu-list { list-style: none; padding: 20px 10px; overflow-y: auto; }
         .menu-list li { margin-bottom: 10px; }
         .menu-list button { width: 100%; text-align: left; background: none; border: none; padding: 12px 15px; font-size: 14px; font-weight: 600; color: #333; border-radius: 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; }
-        .menu-list button.active { background-color: #EAF4D3; color: #1a2e0f; }
+        .menu-list button.active { background-color: #FFF3E0; color: #1A0A0A; }
         .sidebar-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 90; opacity: 0; visibility: hidden; transition: 0.3s; }
         .sidebar-overlay.active { opacity: 1; visibility: visible; }
         
@@ -39,24 +39,24 @@
         .admin-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .section-title { font-size: 18px; font-weight: 800; color: #1a2e0f; margin-bottom: 20px; border-bottom: 2px solid #EAF4D3; padding-bottom: 10px; }
+        .section-title { font-size: 18px; font-weight: 800; color: #1A0A0A; margin-bottom: 20px; border-bottom: 2px solid #FFF3E0; padding-bottom: 10px; }
         
         .form-card { background: #ffffff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 12px; color: #1a2e0f; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #EAF4D3; border-radius: 10px; font-size: 12px; outline: none; background-color: #fafafa; transition: 0.2s; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #CDE39B; background-color: #fff; }
-        input[type="file"] { border: 1.5px dashed #1a2e0f; background: #fdfdfd; cursor: pointer; padding: 10px; font-weight: 500; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 12px; color: #1A0A0A; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #FFF3E0; border-radius: 10px; font-size: 12px; outline: none; background-color: #fafafa; transition: 0.2s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #D32F2F; background-color: #fff; }
+        input[type="file"] { border: 1.5px dashed #1A0A0A; background: #fdfdfd; cursor: pointer; padding: 10px; font-weight: 500; }
         
         .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; margin-bottom: 15px;}
-        .checkbox-group input { width: 18px; height: 18px; accent-color: #1a2e0f; cursor: pointer; }
+        .checkbox-group input { width: 18px; height: 18px; accent-color: #1A0A0A; cursor: pointer; }
         .checkbox-group label { margin-bottom: 0; cursor: pointer; font-size: 13px;}
-        .btn-save { width: 100%; background-color: #1a2e0f; color: #CDE39B; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
+        .btn-save { width: 100%; background-color: #1A0A0A; color: #FFF; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
         .btn-save:active { transform: scale(0.98); }
         .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        .list-item { background: #fff; padding: 12px 15px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #EAF4D3; margin-bottom: 10px; }
-        .btn-delete { background: #FF4747; color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .list-item { background: #fff; padding: 12px 15px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #FFF3E0; margin-bottom: 10px; }
+        .btn-delete { background: #D32F2F; color: white; border: none; padding: 8px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
         .btn-delete:active { transform: scale(0.9); }
         .btn-delete svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
         .product-list-item img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; }
@@ -66,52 +66,53 @@
         
         /* --- DASHBOARD & INSIGHT STYLES --- */
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .stat-card { background-color: #CDE39B; border-radius: 15px; padding: 20px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .stat-card.dark { background-color: #1a2e0f; color: #CDE39B; }
-        .stat-card h3 { font-size: 24px; font-weight: 800; line-height: 1.2; }
+        .stat-card { background-color: #D32F2F; border-radius: 15px; padding: 20px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .stat-card.dark { background-color: #1A0A0A; color: #FFF; }
+        .stat-card h3 { font-size: 24px; font-weight: 800; line-height: 1.2; color: #FFF;}
         .stat-card.dark h3 { color: #fff; }
-        .stat-card p { font-size: 11px; font-weight: 600; margin-top: 5px; }
-        .stat-card.full { grid-column: span 2; background-color: #EAF4D3; border: 2px solid #CDE39B; }
-        .stat-card.full h3 { font-size: 28px; color: #1a2e0f; }
+        .stat-card p { font-size: 11px; font-weight: 600; margin-top: 5px; color:#FFF; opacity:0.9;}
+        .stat-card.full { grid-column: span 2; background-color: #FFF3E0; border: 2px solid #D32F2F; }
+        .stat-card.full h3 { font-size: 28px; color: #1A0A0A; }
+        .stat-card.full p { color: #1A0A0A; opacity:0.8;}
         
         .chart-card { background-color: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border: 1px solid #eee;}
-        .chart-info h3 { font-size: 14px; color: #1a2e0f; margin-bottom: 5px; }
+        .chart-info h3 { font-size: 14px; color: #1A0A0A; margin-bottom: 5px; }
         .chart-info p { font-size: 10px; color: #666; max-width: 150px; line-height: 1.4; }
-        .circular-chart { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#1a2e0f 0%, #EAF4D3 0deg); display: flex; align-items: center; justify-content: center; }
-        .inner-circle { width: 54px; height: 54px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #1a2e0f; }
+        .circular-chart { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#1A0A0A 0%, #FFF3E0 0deg); display: flex; align-items: center; justify-content: center; }
+        .inner-circle { width: 54px; height: 54px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #1A0A0A; }
 
         .bar-chart-container { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 20px; border: 1px solid #eee;}
         .bar-item { margin-bottom: 15px; }
         .bar-item:last-child { margin-bottom: 0; }
         .bar-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 5px; color: #333; }
-        .bar-bg { width: 100%; height: 10px; background-color: #EAF4D3; border-radius: 5px; overflow: hidden; position: relative;}
-        .bar-fill { height: 100%; background-color: #1a2e0f; border-radius: 5px; transition: width 1s ease-in-out; }
+        .bar-bg { width: 100%; height: 10px; background-color: #FFF3E0; border-radius: 5px; overflow: hidden; position: relative;}
+        .bar-fill { height: 100%; background-color: #D32F2F; border-radius: 5px; transition: width 1s ease-in-out; }
         
-        .insight-card { background: linear-gradient(135deg, #1a2e0f 0%, #2c4c1a 100%); color: #fff; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(26, 46, 15, 0.2); }
-        .insight-card h3 { font-size: 16px; color: #CDE39B; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
+        .insight-card { background: linear-gradient(135deg, #1A0A0A 0%, #301111 100%); color: #fff; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(26, 10, 10, 0.2); }
+        .insight-card h3 { font-size: 16px; color: #FF9800; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
         .insight-card p { font-size: 11px; line-height: 1.5; margin-bottom: 10px; opacity: 0.9;}
         .insight-card ul { padding-left: 20px; font-size: 11px; line-height: 1.6; }
         .insight-card ul li { margin-bottom: 5px; }
-        .insight-card ul li strong { color: #CDE39B; }
+        .insight-card ul li strong { color: #FF9800; }
 
         .admin-footer { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ddd; text-align: center; padding-bottom: 20px;}
-        .admin-footer h4 { font-size: 12px; color: #1a2e0f; margin-bottom: 10px; font-weight: 800;}
+        .admin-footer h4 { font-size: 12px; color: #1A0A0A; margin-bottom: 10px; font-weight: 800;}
         .faq-box { text-align: left; background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #eee; }
         .faq-box details { margin-bottom: 10px; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px; }
         .faq-box details:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
         .faq-box summary { font-size: 11px; font-weight: 700; color: #333; cursor: pointer; outline: none; }
         .faq-box p { font-size: 10px; color: #666; margin-top: 5px; line-height: 1.5; padding-left: 15px;}
-        .copyright { font-size: 10px; color: #999; font-weight: 600; }
+        .copyright { font-size: 10px; color: #999; font-weight: 600; line-height: 1.6; }
 
         .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: #25D366; color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 9999; display: flex; align-items: center; gap: 8px; }
         .toast.show { bottom: 30px; }
-        .empty-state { text-align: center; color: #8da372; font-size: 12px; padding: 20px; font-weight: 600; width: 100%; }
+        .empty-state { text-align: center; color: #D32F2F; font-size: 12px; padding: 20px; font-weight: 600; width: 100%; }
 
         /* KOTAK MERAH UNTUK ZONA BAHAYA */
-        .danger-zone { border: 2px solid #FF4747; background-color: #FFF5F5; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; }
-        .danger-zone h3 { color: #FF4747; font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .danger-zone { border: 2px solid #D32F2F; background-color: #FFF5F5; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; }
+        .danger-zone h3 { color: #D32F2F; font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .danger-zone p { font-size: 11px; color: #666; margin-bottom: 15px; line-height: 1.5; }
-        .btn-danger { background-color: #FF4747; color: white; width: 100%; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
+        .btn-danger { background-color: #D32F2F; color: white; width: 100%; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
         .btn-danger:active { transform: scale(0.98); }
     </style>
 </head>
@@ -126,12 +127,12 @@
                 </button>
                 <div class="header-title">
                     <h1 id="top-title">Dashboard</h1>
-                    <p>hallo admin</p>
+                    <p>Halo Admin!</p>
                 </div>
             </div>
             <a href="index.html" class="btn-review">
                 <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                Lihat etalase
+                Lihat Menu
             </a>
         </header>
 
@@ -146,13 +147,13 @@
             <ul class="menu-list">
                 <li><button class="active" onclick="switchTab('sec-dashboard', 'Dashboard Data', this)">📊 Dashboard Real-Time</button></li>
                 <li><button onclick="switchTab('sec-kategori', 'Kategori Menu', this)">📑 Kategori Produk</button></li>
-                <li><button onclick="switchTab('sec-produk', 'Kelola Produk', this)">🍔 Database Produk</button></li>
+                <li><button onclick="switchTab('sec-produk', 'Kelola Produk', this)">🍜 Database Produk</button></li>
                 <li><button onclick="switchTab('sec-diskon', 'Kelola Diskon', this)">🏷️ Flash Sale / Diskon</button></li>
                 <li><button onclick="switchTab('sec-kontak', 'Kontak & Sosmed', this)">📱 Setup WA & IG</button></li>
                 <li><button onclick="switchTab('sec-umum', 'Pengaturan Umum', this)">⚙️ Logo & Branding</button></li>
                 <li><button onclick="switchTab('sec-promo', 'Promo Pop-up', this)">🎉 Pop-up Banner</button></li>
                 
-                <li style="margin-top: 20px;"><button onclick="switchTab('sec-reset', 'Reset Sistem', this)" style="color: #FF4747;">⚠️ Reset Data</button></li>
+                <li style="margin-top: 20px;"><button onclick="switchTab('sec-reset', 'Reset Sistem', this)" style="color: #D32F2F;">⚠️ Reset Data</button></li>
             </ul>
         </aside>
 
@@ -162,7 +163,7 @@
                 <h2 class="section-title">Statistik Toko (Live)</h2>
                 
                 <div class="stat-card full" style="margin-bottom: 15px;">
-                    <p style="color: #666;">Estimasi Pendapatan</p>
+                    <p>Estimasi Pendapatan</p>
                     <h3 id="stat-revenue">Rp 0</h3>
                 </div>
 
@@ -178,7 +179,7 @@
                 </div>
 
                 <div class="stat-grid">
-                    <div class="stat-card dark" style="background-color: #2c4c1a;">
+                    <div class="stat-card dark" style="background-color: #301111;">
                         <h3 id="stat-kunjungan">0</h3>
                         <p>Kunjungan Web</p>
                     </div>
@@ -215,7 +216,7 @@
             <div id="sec-kategori" class="admin-section">
                 <h2 class="section-title">Tambah Kategori Baru</h2>
                 <div class="form-card">
-                    <div class="form-group"><label>Masukkan Kategori Baru</label><input type="text" id="input-kategori" placeholder="Contoh: Menu Spesial"></div>
+                    <div class="form-group"><label>Masukkan Kategori Baru</label><input type="text" id="input-kategori" placeholder="Contoh: Mie Pedas"></div>
                     <button class="btn-save" id="btn-tambah-kategori" onclick="tambahKategori()">➕ Tambah Kategori</button>
                 </div>
                 <h2 class="section-title" style="margin-top: 30px;">Daftar Kategori Tersimpan</h2>
@@ -225,9 +226,9 @@
             <div id="sec-produk" class="admin-section">
                 <h2 class="section-title">Tambah Produk</h2>
                 <div class="form-card">
-                    <div class="form-group"><label>Nama Produk</label><input type="text" id="input-prod-nama" placeholder="Contoh: Nasi Lemak Komplit"></div>
-                    <div class="form-group"><label>Deskripsi Pendek</label><textarea id="input-prod-desc" rows="2" placeholder="Isian makanan, bumbu, dll..."></textarea></div>
-                    <div class="form-group"><label>Harga (Rupiah)</label><input type="number" id="input-prod-harga" placeholder="Contoh: 35000"></div>
+                    <div class="form-group"><label>Nama Produk</label><input type="text" id="input-prod-nama" placeholder="Contoh: Mie Jebew Level Dewa"></div>
+                    <div class="form-group"><label>Deskripsi Pendek</label><textarea id="input-prod-desc" rows="2" placeholder="Isian topping ayam, pangsit, dll..."></textarea></div>
+                    <div class="form-group"><label>Harga (Rupiah)</label><input type="number" id="input-prod-harga" placeholder="Contoh: 15000"></div>
                     <div class="form-group"><label>Kategori</label><select id="select-prod-kat"><option value="">Pilih Kategori...</option></select></div>
                     <div class="form-group"><label>📸 Foto Produk</label><input type="file" id="input-prod-file" accept="image/*"></div>
                     <button type="button" class="btn-save" id="btn-tambah-produk" onclick="tambahProduk()">➕ Simpan Produk</button>
@@ -248,8 +249,8 @@
             <div id="sec-kontak" class="admin-section">
                 <h2 class="section-title">Sosial Media & WhatsApp</h2>
                 <div class="form-card">
-                    <div class="form-group"><label>Nomor WhatsApp (Penerima Order)</label><input type="number" id="input-wa" placeholder="Contoh: 6281234567890"></div>
-                    <div class="form-group"><label>Username Instagram</label><input type="text" id="input-ig" placeholder="@cireng.mantap"></div>
+                    <div class="form-group"><label>Nomor WhatsApp Kasir</label><input type="number" id="input-wa" placeholder="Contoh: 6281234567890"></div>
+                    <div class="form-group"><label>Username Instagram</label><input type="text" id="input-ig" placeholder="@miejebew.mantap"></div>
                     <button class="btn-save" id="btn-simpan-kontak" onclick="simpanKontak()">💾 Simpan Kontak</button>
                 </div>
             </div>
@@ -269,7 +270,7 @@
             <div id="sec-promo" class="admin-section">
                 <h2 class="section-title">Pop-up Promo Banner</h2>
                 <div class="form-card">
-                    <div class="checkbox-group" style="background: #EAF4D3; padding: 10px; border-radius: 10px;">
+                    <div class="checkbox-group" style="background: #FFF3E0; padding: 10px; border-radius: 10px;">
                         <input type="checkbox" id="enable-promo">
                         <label for="enable-promo" style="font-weight: 700; font-size: 14px;">Aktifkan Promo Pop-up</label>
                     </div>
@@ -280,7 +281,7 @@
             </div>
 
             <div id="sec-reset" class="admin-section">
-                <h2 class="section-title" style="color: #FF4747; border-bottom-color: #FF4747;">Factory Reset</h2>
+                <h2 class="section-title" style="color: #D32F2F; border-bottom-color: #D32F2F;">Factory Reset</h2>
                 <div class="danger-zone">
                     <h3>⚠️ Zona Bahaya (Danger Zone)</h3>
                     <p>Hati-hati! Fitur ini akan menghapus <b>SEMUA</b> data produk, kategori, riwayat foto di Storage, dan angka statistik (kembali ke 0) secara <b>permanen</b>. Etalase web akan kembali kosong sepenuhnya seperti saat pertama kali diinstal.</p>
@@ -293,20 +294,20 @@
                 <div class="faq-box">
                     <details>
                         <summary>Ke mana pesanan masuk?</summary>
-                        <p>Semua pesanan dari pelanggan akan langsung diarahkan ke aplikasi WhatsApp nomor Admin yang sudah Anda atur di menu "Setup WA & IG".</p>
+                        <p>Semua pesanan dari pelanggan (dan info meja) akan langsung diarahkan ke aplikasi WhatsApp Kasir yang sudah Anda atur di menu "Setup WA & IG".</p>
                     </details>
                     <details>
                         <summary>Dari mana asal data Kunjungan & Pendapatan?</summary>
-                        <p>Data Kunjungan dihitung otomatis 1x untuk tiap pelanggan baru yang membuka web. Pendapatan dihitung ketika pelanggan berhasil menyelesaikan order dan menekan tombol Kirim ke WA.</p>
+                        <p>Data Kunjungan dihitung otomatis 1x untuk tiap pelanggan baru yang membuka web / scan barcode. Pendapatan dihitung ketika pelanggan berhasil menekan tombol Kirim ke WA.</p>
                     </details>
                     <details>
                         <summary>Kenapa gambar produk saya lambat dimuat?</summary>
-                        <p>Pastikan ukuran gambar yang diupload tidak lebih dari 1MB agar performa web tetap cepat bagi pembeli yang menggunakan koneksi lambat.</p>
+                        <p>Pastikan ukuran gambar yang diupload tidak lebih dari 1MB agar performa web tetap cepat saat discan oleh pelanggan.</p>
                     </details>
                 </div>
                 <div class="copyright">
-                    &copy; 2026 GgDesign - Developed & Powered with ❤️
-                    <br>Ver 1.0.0
+                    &copy; 2026 AppAll - Katalog Digi<br>
+                    Developed & Powered with ❤️ | Ver 1.0.0
                 </div>
             </footer>
 
@@ -336,7 +337,6 @@
             setTimeout(() => { toast.classList.remove('show'); }, 3500); 
         }
 
-        // --- FETCH PENGATURAN UMUM ---
         async function fetchPengaturan() {
             const { data } = await _supabase.from('pengaturan').select('*').eq('id', 1).single();
             if(data) {
@@ -357,7 +357,7 @@
                 document.getElementById('stat-kunjungan').innerText = visit.toLocaleString('id-ID');
                 document.getElementById('stat-klik-wa').innerText = click.toLocaleString('id-ID');
                 document.getElementById('stat-conv-rate').innerText = rate + "%";
-                document.getElementById('conv-chart-bg').style.background = `conic-gradient(#1a2e0f ${rate}%, #EAF4D3 0deg)`;
+                document.getElementById('conv-chart-bg').style.background = `conic-gradient(#1A0A0A ${rate}%, #FFF3E0 0deg)`;
             }
         }
 
@@ -393,7 +393,6 @@
             btn.innerText = "💾 Simpan Banner Promo"; btn.disabled = false;
         }
 
-        // --- DASHBOARD REAL-TIME LOGIC ---
         function generateDashboardStats(katData, prodData) {
             document.getElementById('stat-total-produk').innerText = prodData.length;
             document.getElementById('stat-total-kategori').innerText = katData.length;
@@ -424,12 +423,11 @@
             const top1 = topProducts[0].nama;
             insightList.innerHTML = `
                 <li><strong>TikTok Ads / FYP:</strong> Bikin konten POV / review makan <b>${top1}</b>. Suara renyah dan visual bumbu yang medok punya peluang 70% lebih tinggi buat FYP.</li>
-                <li><strong>Meta Ads (IG/FB):</strong> Gunakan fitur <i>Carousel Ads</i> dengan <b>${top1}</b> di slide pertama. Sasar audiens pecinta kuliner usia 18-35 tahun di sekitar lokasi Anda.</li>
+                <li><strong>Meta Ads (IG/FB):</strong> Gunakan fitur <i>Carousel Ads</i> dengan <b>${top1}</b> di slide pertama. Sasar audiens pecinta kuliner pedas usia 18-35 tahun di sekitar lokasi cafe.</li>
                 <li><strong>Promo Bundling:</strong> Gabungkan <b>${top1}</b> dengan minuman untuk menaikkan <i>Average Order Value</i> (AOV).</li>
             `;
         }
 
-        // --- CRUD KATEGORI & PRODUK ---
         async function fetchKategori() {
             const { data } = await _supabase.from('kategori').select('*').order('id', { ascending: true });
             const containerList = document.getElementById('kategori-list'); const selectProdKat = document.getElementById('select-prod-kat');
@@ -450,9 +448,9 @@
             listProduk.innerHTML = ''; listDiskon.innerHTML = '';
             if (data && data.length > 0) { data.forEach(prod => {
                 let checkPopuler = prod.is_populer ? "checked" : ""; let imgSrc = prod.gambar ? prod.gambar : "https://via.placeholder.com/100";
-                listProduk.innerHTML += `<div class="list-item product-list-item" style="flex-wrap: wrap;"><img src="${imgSrc}"><div class="prod-info"><h4>${prod.nama}</h4><p>Rp ${prod.harga.toLocaleString('id-ID')}</p><p style="color:#CDE39B; font-weight:bold; background:#1a2e0f; display:inline-block; padding:2px 5px; border-radius:4px;">${prod.kategori}</p></div><div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;"><div class="checkbox-group" style="margin: 0;"><input type="checkbox" id="pop-${prod.id}" ${checkPopuler} onchange="updatePopuler(${prod.id}, this.checked)"><label for="pop-${prod.id}" style="font-size: 11px; font-weight: 700;">⭐ Populer</label></div><button class="btn-delete" onclick="hapusProduk(${prod.id}, '${prod.gambar}')"><svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span style="margin-left:5px; font-size:11px; font-weight:bold;">Hapus</span></button></div></div>`;
+                listProduk.innerHTML += `<div class="list-item product-list-item" style="flex-wrap: wrap;"><img src="${imgSrc}"><div class="prod-info"><h4>${prod.nama}</h4><p>Rp ${prod.harga.toLocaleString('id-ID')}</p><p style="color:#2B0A0A; font-weight:bold; background:#FFF3E0; display:inline-block; padding:2px 5px; border-radius:4px;">${prod.kategori}</p></div><div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;"><div class="checkbox-group" style="margin: 0;"><input type="checkbox" id="pop-${prod.id}" ${checkPopuler} onchange="updatePopuler(${prod.id}, this.checked)"><label for="pop-${prod.id}" style="font-size: 11px; font-weight: 700;">⭐ Populer</label></div><button class="btn-delete" onclick="hapusProduk(${prod.id}, '${prod.gambar}')"><svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span style="margin-left:5px; font-size:11px; font-weight:bold;">Hapus</span></button></div></div>`;
                 let valDiskon = prod.diskon > 0 ? prod.diskon : "";
-                listDiskon.innerHTML += `<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;"><span style="font-size: 13px; font-weight: 600;">${prod.nama}</span><div style="display: flex; align-items: center; gap: 5px;"><input type="number" id="disc-${prod.id}" value="${valDiskon}" placeholder="0" style="width: 60px; padding: 5px; border-radius: 5px; text-align: center; border: 1px solid #ddd;"><span style="font-size: 12px; font-weight: 700;">% OFF</span><button onclick="simpanDiskonTunggal(${prod.id})" style="background:#1a2e0f; color:#CDE39B; border:none; padding:5px 8px; border-radius:5px; cursor:pointer;">Set</button></div></div>`;
+                listDiskon.innerHTML += `<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;"><span style="font-size: 13px; font-weight: 600;">${prod.nama}</span><div style="display: flex; align-items: center; gap: 5px;"><input type="number" id="disc-${prod.id}" value="${valDiskon}" placeholder="0" style="width: 60px; padding: 5px; border-radius: 5px; text-align: center; border: 1px solid #ddd;"><span style="font-size: 12px; font-weight: 700;">% OFF</span><button onclick="simpanDiskonTunggal(${prod.id})" style="background:#1A0A0A; color:#FFF; border:none; padding:5px 8px; border-radius:5px; cursor:pointer;">Set</button></div></div>`;
             }); } else { listProduk.innerHTML = '<p class="empty-state">Belum ada produk bro!</p>'; listDiskon.innerHTML = '<p class="empty-state">Daftar kosong.</p>'; }
             return data || [];
         }
@@ -462,7 +460,6 @@
         async function simpanDiskonTunggal(id) { let val = document.getElementById(`disc-${id}`).value; val = val === "" ? 0 : parseInt(val); await _supabase.from('produk').update({ diskon: val }).eq('id', id); tampilToast(`Diskon diupdate jadi ${val}%!`); }
         async function hapusProduk(id, imgUrl) { if(confirm("Yakin hapus?")) { if(imgUrl && imgUrl !== "") { const parts = imgUrl.split('/'); await _supabase.storage.from('cireng-images').remove([parts[parts.length - 1]]); } await _supabase.from('produk').delete().eq('id', id); tampilToast("Dihapus!"); fetchProduk(); } }
 
-        // --- SISTEM FACTORY RESET ---
         async function resetSemuaData() {
             const btn = document.getElementById('btn-reset-data');
             const konfirmasi = prompt("⚠️ PERINGATAN! Ketik 'RESET' huruf besar semua untuk menghapus semua produk, gambar, & statistik ke 0:");
